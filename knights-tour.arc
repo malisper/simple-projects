@@ -1,3 +1,5 @@
+;;;; a program that calculates knights' tours
+
 (deftem square row -1 col -1)
 
 (def valid (sqr)
