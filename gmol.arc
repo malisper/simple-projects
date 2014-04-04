@@ -1,3 +1,5 @@
+;;;; a program for playing the game of life
+
 (deftem cell row -1 col -1)
 
 (= num-rows 20)
