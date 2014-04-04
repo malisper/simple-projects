@@ -66,10 +66,14 @@
 (def result ()
   "tell what the result is"
   (prn "The dealer had ") (prn-hand dhand)
-  (if (> (hand-value phand) 21) (prn "You busted, dealer wins")
-      (> (hand-value dhand) 21) (prn "Dealer busted, you win")
-      (> (hand-value phand) (hand-value dhand)) (prn "You have more than the dealer, you win")
-      t                         (prn "Dealer had more than you, dealer wins"))
+  (if (> (hand-value phand) 21)
+        (prn "You busted, dealer wins")
+      (> (hand-value dhand) 21)
+        (prn "Dealer busted, you win")
+      (> (hand-value phand)(hand-value dhand))
+        (prn "You have more than the dealer, you win")
+      'else
+        (prn "Dealer had more than you, dealer wins"))
   (prn "Would you like to play again?")
   (unless (is (read) 'n)
      (start-game))) 
