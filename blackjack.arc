@@ -70,7 +70,7 @@
         (prn "You busted, dealer wins")
       (> (hand-value dhand) 21)
         (prn "Dealer busted, you win")
-      (> (hand-value phand)(hand-value dhand))
+      (> (hand-value phand) (hand-value dhand))
         (prn "You have more than the dealer, you win")
       'else
         (prn "Dealer had more than you, dealer wins"))
