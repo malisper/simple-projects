@@ -11,13 +11,13 @@
 (deftem card rank -1 suit nil)
 
 (def card-value (c)
-  "gets the value of a card"
+  "Gets the value of a card."
   (if (isa c!rank 'int) c!rank
       (is  c!rank 'A)   11
       'else             10))
 
 (def hand-value (h)
-  "calculates the total value of a hand"
+  "Calculates the total value of a hand."
   (withs (raw-value (reduce + (map card-value h))
 	  actual-value raw-value
 	  ace-count (count [is _!rank 'A] h))
@@ -27,12 +27,12 @@
      actual-value))
 	 
 (def top ()
-  "takes off the top card of the deck"
+  "Takes off the top card of the deck."
   (pop deck))
 
 (def start-game ()
-  "deals and then starts the game"
-  (when (len< deck (* num-decks 13)) ; when to reshuffle
+  "Deals and then starts the game."
+  (when (len< deck (* num-decks 13)) ; When to reshuffle.
     (= deck (shuffle:new-deck num-decks)))
   (deal)
   (players-turn)
@@ -40,7 +40,7 @@
   (result))
 
 (def deal ()
-  "deal the hands"
+  "Deals the hands."
   (= dhand nil)
   (= phand nil)
   (push (top) phand)
@@ -49,7 +49,7 @@
   (push (top) dhand))
 
 (def players-turn ()
-  "play out the players hand"
+  "Play out the players hand."
   (prn "You have ") (prn-hand phand)
   (prn "You see the dealer has ") (pr-card:car dhand) (prn)
   (unless (> (hand-value phand) 21)
@@ -59,12 +59,12 @@
 	(players-turn))))
 
 (def dealers-turn ()
-  "dealers turn"
+  "Dealers turn"
   (while (< (hand-value dhand) 17)
      (push (top) dhand)))
 
 (def result ()
-  "tell what the result is"
+  "Display the result."
   (prn "The dealer had ") (prn-hand dhand)
   (if (> (hand-value phand) 21)
         (prn "You busted, dealer wins")
@@ -79,8 +79,8 @@
      (start-game))) 
 
 (def new-deck ((o num 1))
-  "create a given number of decks by default one
-   they are not shuffled yet"
+  "Create a given number of decks. The default is one.
+   The decks are not shuffled yet."
   (accum a
     (repeat num
       (each rank ranks
